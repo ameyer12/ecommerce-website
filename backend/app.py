@@ -119,8 +119,8 @@ def addProduct():
 
     with connection:
         with connection.cursor() as cursor:
-            cursor.execute(CREATE_USERS_TABLE)
-            cursor.execute(INSERT_INTO_USERS, (username, email, password))
+            cursor.execute(CREATE_PRODUCTS_TABLE)
+            cursor.execute(INSERT_INTO_PRODUCTS, (name, description, price, quantity))
             user_id = cursor.fetchone()[0]
 
     return jsonify({"user_id": user_id, "message": "User successfully created"}), 201
