@@ -109,7 +109,6 @@ def getAllUsers():
     return jsonify(users)
 
 # API routes for products
-
 @app.post("/api/products")
 def addProduct():
     data = request.get_json()
@@ -125,10 +124,6 @@ def addProduct():
             user_id = cursor.fetchone()[0]
 
     return jsonify({"user_id": user_id, "message": "User successfully created"}), 201
-
-
-
-
 
 @app.route('/get', methods=['GET'])
 def getAllProducts():
