@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Verify Orders</title>
+  <style>
+    body {
+      background-image: url("https://img.freepik.com/free-photo/composition-black-friday-shopping-cart-with-copy-space_23-2148667046.jpg?size=626&ext=jpg&ga=GA1.1.2018312778.1688255220&semt=ais");
+      background-size: cover;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+      background-color: #f2f2f2;
+      border-radius: 5px;
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th,
+    td {
+      padding: 10px;
+      border-bottom: 1px solid #ccc;
+    }
+
+    th {
+      background-color: #333;
+      color: #fff;
+    }
+
+    tr:hover {
+      background-color: #ddd;
+    }
+
+    .button-container {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .button-container button {
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+
+    .button-container button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Verify Orders</h2>
+    <table>
+      <tr>
+        <th>Order ID</th>
+        <th>Customer Name</th>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Total Amount</th>
+        <th>Action</th>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>name</td>
+        <td>Product 1</td>
+        <td>3</td>
+        <td>price</td>
+        <td><button onclick="verifyOrder(this)">Verify</button></td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>name</td>
+        <td>Product 2</td>
+        <td>1</td>
+        <td>price</td>
+        <td><button onclick="verifyOrder(this)">Verify</button></td>
+      </tr>
+      <!-- Add more order rows as needed -->
+    </table>
+    <div class="button-container">
+      <button onclick="verifyAllOrders()">Verify All Orders</button>
+    </div>
+  </div>
+
+  <script>
+    function verifyOrder(button) {
+      var row = button.parentNode.parentNode;
+      row.style.backgroundColor = "#c3e6cb"; // Set verified order row color
+      button.disabled = true; // Disable the verify button
+    }
+
+    function verifyAllOrders() {
+      var rows = document.querySelectorAll("table tr:not(:first-child)");
+      rows.forEach(function(row) {
+        row.style.backgroundColor = "#c3e6cb"; // Set verified order row color
+        row.querySelector("button").disabled = true; // Disable the verify button
+      });
+    }
+  </script>
+</body>
+</html>
