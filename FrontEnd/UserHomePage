@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Ecommerce Store</title>
+  <style>
+    body {
+      background-image: url("https://img.freepik.com/free-photo/black-friday-elements-assortment_23-2149074076.jpg?size=626&ext=jpg&ga=GA1.2.2018312778.1688255220&semt=ais");
+      background-size: cover;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #fff;
+      text-align: center;
+    }
+	
+    .top-right {
+      display: flex;
+      justify-content: flex-end;
+      align-items: right;
+      margin-bottom: 20px;
+    }
+
+    .top-right a {
+      margin-left: 15px;
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      }
+	  
+    .product-list {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .product-card {
+      width: 300px;
+      background-color: #fff;
+      border-radius: 5px;
+      margin: 10px;
+      padding: 20px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+
+    .product-card h2 {
+      margin-top: 10px;
+      color: #333;
+    }
+
+    .product-card p {
+      color: #777;
+    }
+
+    .product-card .price {
+      font-weight: bold;
+      color: #555;
+    }
+    .product-card .add-to-cart {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      margin-top: 20px;
+      text-align: center;
+      background-color: #4caf50;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+
+    .product-card .add-to-cart:hover {
+      background-color: #45a049;
+    }
+    .sort-section {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .sort-section select {
+      padding: 5px 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+      <div class="top-right">
+      <a href="#" class="my-cart">My Cart</a>
+      <a href="#" class="user-settings">Settings</a>
+	  <a href="#" class="logout">Logout</a>
+    </div>
+  
+    <h1>Welcome to My Ecommerce Store</h1>
+
+    <div class="sort-section">
+      <label for="sort">Sort by:</label>
+      <select id="sort">
+        <option value="default">Default</option>
+        <option value="priceLowToHigh">Price: Low to High</option>
+        <option value="priceHighToLow">Price: High to Low</option>
+      </select>
+    </div>
+
+    <div class="product-list">
+      <div class="product-card">
+        <img src="product1.jpg" alt="Product 1">
+        <h2>Product 1</h2>
+        <p>Name of product</p>
+        <p class="price">$99.99</p>
+		<a href="#" class="add-to-cart">Add to Cart</a>
+      </div>
+
+      <div class="product-card">
+        <img src="product2.jpg" alt="Product 2">
+        <h2>Product 2</h2>
+        <p>Name of product</p>
+        <p class="price">$149.99</p>
+		<a href="#" class="add-to-cart">Add to Cart</a>
+      </div>
+
+      <div class="product-card">
+        <img src="product3.jpg" alt="Product 3">
+        <h2>Product 3</h2>
+        <p>Name of product</p>
+        <p class="price">$199.99</p>
+		<a href="#" class="add-to-cart">Add to Cart</a>
+      </div>
+      <div class="product-card">
+        <img src="product4.jpg" alt="Product 4">
+        <h2>Product 4</h2>
+        <p>Name of product</p>
+        <p class="price">$99.99</p>
+		<a href="#" class="add-to-cart">Add to Cart</a>
+      </div>
+
+      <div class="product-card">
+        <img src="product5.jpg" alt="Product 5">
+        <h2>Product 5</h2>
+        <p>Name of product</p>
+        <p class="price">$149.99</p>
+		<a href="#" class="add-to-cart">Add to Cart</a>
+      </div>
+
+      <div class="product-card">
+        <img src="product6.jpg" alt="Product 6">
+        <h2>Product 6</h2>
+        <p>Name of product</p>
+        <p class="price">$199.99</p>
+		<a href="#" class="add-to-cart">Add to Cart</a>
+      </div>
+	  
+      <!-- Add more product cards as needed -->
+	  
+    </div>
+  </div>
+ <script>
+    // Sample products data
+    const products = [
+      { id: 1, name: 'Product 1', price: $99.99 },
+      { id: 2, name: 'Product 2', price: $149.99 },
+      { id: 3, name: 'Product 3', price: $199.99 },
+    ];
+
+    // Function to render products
+    function renderProducts() {
+      const productList = document.getElementById('product-list');
+      productList.innerHTML = '';
+
+      products.forEach(product => {
+        const productElement = document.createElement('div');
+        productElement.classList.add('product');
+
+        const productImage = document.createElement('img');
+        productImage.src = 'path/to/product/image.png';
+        productElement.appendChild(productImage);
+
+        const productName = document.createElement('h3');
+        productName.textContent = product.name;
+        productElement.appendChild(productName);
+
+        const productPrice = document.createElement('p');
+        productPrice.textContent = '$' + product.price;
+        productElement.appendChild(productPrice);
+
+        productList.appendChild(productElement);
+      });
+    }
+
+    // Function to sort products based on price
+    function sortProducts() {
+      const sortSelect = document.getElementById('sort');
+      const selectedValue = sortSelect.value;
+
+      if (selectedValue === 'lowToHigh') {
+        products.sort((a, b) => a.price - b.price);
+      } else if (selectedValue === 'highToLow') {
+        products.sort((a, b) => b.price - a.price);
+      }
+
+      renderProducts();
+    }
+
+    // Event listener for sort select change
+    const sortSelect = document.getElementById('sort');
+    sortSelect.addEventListener('change', sortProducts);
+
+    // Event listener for add product button click
+    const addProductButton = document.getElementById('add-product');
+    addProductButton.addEventListener('click', () => {
+      const newProduct = {
+        id: products.length + 1,
+        name: 'New Product',
+        price: Math.floor(Math.random() * 100) + 1,
+      };
+
+      products.push(newProduct);
+      renderProducts();
+    });
+
+    // Initial rendering of products
+    renderProducts();
+ </script>
+</body>
+</html>
