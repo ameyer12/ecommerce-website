@@ -1,0 +1,12 @@
+.navbar {
+    margin-bottom: 2%;
+}
+
+.navbar-brand {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.nav-item {
+    margin-top: -2%;
+}
