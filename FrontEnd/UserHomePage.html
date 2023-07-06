@@ -309,19 +309,6 @@
     const searchInput = document.getElementById('search');
     searchInput.addEventListener('input', searchProducts);
 
-    // Event listener for add product button click
-    const addProductButton = document.getElementById('add-product');
-    addProductButton.addEventListener('click', () => {
-      const newProduct = {
-        id: products.length + 1,
-        name: 'New Product',
-        price: Math.floor(Math.random() * 100) + 1,
-      };
-
-      products.push(newProduct);
-      renderProducts();
-    });
-
     // Initial rendering of products
     renderProducts();
  </script>
