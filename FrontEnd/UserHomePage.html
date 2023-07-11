@@ -52,7 +52,7 @@
 
     .product-card img {
       width: 100%;
-      height: 200px;
+      height: 300px;
       object-fit: cover;
       border-radius: 5px;
     }
@@ -72,7 +72,7 @@
     }
     .product-card .add-to-cart {
       display: block;
-      width: 100%;
+      width: 90%;
       padding: 10px;
       margin-top: 20px;
       text-align: center;
@@ -88,14 +88,28 @@
     }
     .sort-section {
       margin-bottom: 20px;
-      text-align: center;
+      text-align: right;
     }
 
     .sort-section select {
+	  text-align: right;
+      margin-bottom: 20px;
       padding: 5px 10px;
       border-radius: 5px;
       border: 1px solid #ccc;
     }
+    .search-input {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 10px;
+      padding: 5px;
+      width: 100%;
+    }
+
+    .search-input input {
+	  height: 25px;
+      width: 350px;
+    }	
   </style>
 </head>
 <body>
@@ -109,7 +123,7 @@
     <h1>Welcome to My Ecommerce Store</h1>
 
     <div class="sort-section">
-      <label for="sort">Sort by:</label>
+      <label for="sort">Sort by Price:</label>
       <select id="sort">
         <option value="default">Default</option>
         <option value="priceLowToHigh">Price: Low to High</option>
@@ -117,64 +131,98 @@
       </select>
     </div>
 
+    <div class="search-input">
+      <input type="text" id="search" placeholder="Search products">
+    </div>
+
     <div class="product-list">
       <div class="product-card">
-        <img src="product1.jpg" alt="Product 1">
-        <h2>Product 1</h2>
-        <p>Name of product</p>
-        <p class="price">$99.99</p>
+        <img src="https://i0.wp.com/www.smartprix.com/bytes/wp-content/uploads/2023/06/1b-1.jpg">
+        <h2>Samsung</h2>
+        <p>Samsung S23 Ultra</p>
+        <p class="price">$999.99</p>
 		<a href="#" class="add-to-cart">Add to Cart</a>
       </div>
 
       <div class="product-card">
-        <img src="product2.jpg" alt="Product 2">
-        <h2>Product 2</h2>
-        <p>Name of product</p>
+        <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-pro-finish-unselect-gallery-2-202209?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1663790290203">
+        <h2>Apple</h2>
+        <p>Iphone 14 Pro</p>
+        <p class="price">$1000.99</p>
+		<a href="#" class="add-to-cart">Add to Cart</a>
+      </div>
+
+      <div class="product-card">
+        <img src="https://5.imimg.com/data5/SELLER/Default/2022/11/FH/CG/IX/97646359/apple-macbook-laptop.jpg">
+        <h2>Apple</h2>
+        <p>Macbook Air M2</p>
+        <p class="price">$2199.99</p>
+		<a href="#" class="add-to-cart">Add to Cart</a>
+      </div>
+      <div class="product-card">
+        <img src="https://i.dell.com/sites/csimages/Product_Imagery/all/fp-aw-laptops-hero-a-1920x1440-v2.png">
+        <h2>Dell</h2>
+        <p>Alienware</p>
+        <p class="price">$2299.99</p>
+		<a href="#" class="add-to-cart">Add to Cart</a>
+      </div>
+
+      <div class="product-card">
+        <img src="https://resource.logitech.com/w_800,c_lpad,ar_1:1,q_auto,f_auto,dpr_1.0/d_transparent.gif/content/dam/logitech/en/products/combos/mk470-slim-wireless-combo/gallery-images/mk470-gallery-graphite-matt-us-intl-1.png">
+        <h2>Keyboard</h2>
+        <p>Logitech Wireless Keyboard</p>
+        <p class="price">$29.99</p>
+		<a href="#" class="add-to-cart">Add to Cart</a>
+      </div>
+
+      <div class="product-card">
+        <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MME73?wid=1144&hei=1144&fmt=jpeg&qlt=90&.v=1632861342000">
+        <h2>Apple</h2>
+        <p>Airpods Pro</p>
         <p class="price">$149.99</p>
-		<a href="#" class="add-to-cart">Add to Cart</a>
-      </div>
-
-      <div class="product-card">
-        <img src="product3.jpg" alt="Product 3">
-        <h2>Product 3</h2>
-        <p>Name of product</p>
-        <p class="price">$199.99</p>
-		<a href="#" class="add-to-cart">Add to Cart</a>
-      </div>
-      <div class="product-card">
-        <img src="product4.jpg" alt="Product 4">
-        <h2>Product 4</h2>
-        <p>Name of product</p>
-        <p class="price">$99.99</p>
-		<a href="#" class="add-to-cart">Add to Cart</a>
-      </div>
-
-      <div class="product-card">
-        <img src="product5.jpg" alt="Product 5">
-        <h2>Product 5</h2>
-        <p>Name of product</p>
-        <p class="price">$149.99</p>
-		<a href="#" class="add-to-cart">Add to Cart</a>
-      </div>
-
-      <div class="product-card">
-        <img src="product6.jpg" alt="Product 6">
-        <h2>Product 6</h2>
-        <p>Name of product</p>
-        <p class="price">$199.99</p>
 		<a href="#" class="add-to-cart">Add to Cart</a>
       </div>
 	  
-      <!-- Add more product cards as needed -->
+	  <div class="product-card">
+        <img src="https://m.media-amazon.com/images/I/71D9OsZmWxL.jpg">
+        <h2>Meta</h2>
+        <p>Oculus VR</p>
+        <p class="price">$999.99</p>
+		<a href="#" class="add-to-cart">Add to Cart</a>
+      </div>
+	  
+	  <div class="product-card">
+        <img src="https://m.media-amazon.com/images/I/71UXioQ8eiL.jpg">
+        <h2>Sony</h2>
+        <p>PS 5</p>
+        <p class="price">$599.99</p>
+		<a href="#" class="add-to-cart">Add to Cart</a>
+      </div>
+	  
+	  <div class="product-card">
+        <img src="https://m.media-amazon.com/images/I/71ImGywfeQL.jpg">
+        <h2>Microsoft</h2>
+        <p>XBOX S</p>
+        <p class="price">$499.99</p>
+		<a href="#" class="add-to-cart">Add to Cart</a>
+      </div>
+    
+	<!-- Add more product cards as needed -->
 	  
     </div>
   </div>
  <script>
     // Sample products data
     const products = [
-      { id: 1, name: 'Product 1', price: $99.99 },
-      { id: 2, name: 'Product 2', price: $149.99 },
-      { id: 3, name: 'Product 3', price: $199.99 },
+      { id: 1, name: 'Product 1', price: $999.99 },
+      { id: 2, name: 'Product 2', price: $1000.99 },
+      { id: 3, name: 'Product 3', price: $2199.99 },
+	  { id: 4, name: 'Product 1', price: $2299.99 },
+      { id: 5, name: 'Product 2', price: $29.99 },
+      { id: 6, name: 'Product 3', price: $149.99 },
+	  { id: 7, name: 'Product 1', price: $999.99 },
+      { id: 8, name: 'Product 2', price: $599.99 },
+      { id: 9, name: 'Product 3', price: $499.99 },
     ];
 
     // Function to render products
@@ -216,22 +264,50 @@
       renderProducts();
     }
 
+    // Function to search for products
+    function searchProducts() {
+      const searchInput = document.getElementById('search');
+      const searchTerm = searchInput.value.toLowerCase();
+
+      const filteredProducts = products.filter(product =>
+        product.name.toLowerCase().includes(searchTerm)
+      );
+
+      renderFilteredProducts(filteredProducts);
+    }
+
+    // Function to render filtered products
+    function renderFilteredProducts(filteredProducts) {
+      const productList = document.getElementById('product-list');
+      productList.innerHTML = '';
+
+      filteredProducts.forEach(product => {
+        const productElement = document.createElement('div');
+        productElement.classList.add('product');
+
+        const productImage = document.createElement('img');
+        productImage.src = 'path/to/product/image.png';
+        productElement.appendChild(productImage);
+
+        const productName = document.createElement('h3');
+        productName.textContent = product.name;
+        productElement.appendChild(productName);
+
+        const productPrice = document.createElement('p');
+        productPrice.textContent = '$' + product.price;
+        productElement.appendChild(productPrice);
+
+        productList.appendChild(productElement);
+      });
+    }
+
     // Event listener for sort select change
     const sortSelect = document.getElementById('sort');
     sortSelect.addEventListener('change', sortProducts);
 
-    // Event listener for add product button click
-    const addProductButton = document.getElementById('add-product');
-    addProductButton.addEventListener('click', () => {
-      const newProduct = {
-        id: products.length + 1,
-        name: 'New Product',
-        price: Math.floor(Math.random() * 100) + 1,
-      };
-
-      products.push(newProduct);
-      renderProducts();
-    });
+    // Event listener for search input change
+    const searchInput = document.getElementById('search');
+    searchInput.addEventListener('input', searchProducts);
 
     // Initial rendering of products
     renderProducts();

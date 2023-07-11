@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Settings</title>
+  <style>
+    body {
+	  background-image: url("https://img.freepik.com/free-vector/settings-concept-illustration_114360-4157.jpg?size=626&ext=jpg&ga=GA1.2.2018312778.1688255220&semt=sph");
+      background-size: cover;
+      font-family: Arial, sans-serif;
+    }
+    h1 {
+      color: #333;
+    }
+    .container {
+      width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      background-color: #f9f9f9;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 5px;
+      font-size: 16px;
+    }
+    .btn {
+      display: inline-block;
+      padding: 8px 16px;
+      background-color: #333;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+    }
+    .btn:hover {
+      background-color: #555;
+    }
+    .error {
+      color: red;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Settings</h1>
+    <form id="settings-form">
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" value="user name" disabled>
+        <span id="name-error" class="error"></span>
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email" value="username@example.com" disabled>
+        <span id="email-error" class="error"></span>
+      </div>
+      <div class="form-group">
+        <label for="address">Address:</label>
+        <input type="text" id="address" name="address" value="123 Main St" disabled>
+        <span id="address-error" class="error"></span>
+      </div>
+      <div class="form-group">
+        <button type="button" id="edit-btn" class="btn">Edit</button>
+        <button type="submit" id="save-btn" class="btn" style="display: none;">Save</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    // JavaScript for handling the edit and save functionality
+    const editBtn = document.getElementById('edit-btn');
+    const saveBtn = document.getElementById('save-btn');
+    const formElements = document.querySelectorAll('#settings-form input[type="text"]');
+    const nameInput = document.getElementById('name');
+    const emailInput = document.getElementById('email');
+    const addressInput = document.getElementById('address');
+    const nameError = document.getElementById('name-error');
+    const emailError = document.getElementById('email-error');
+    const addressError = document.getElementById('address-error');
+
+    // Enable editing of form fields
+    function enableEditing() {
+      formElements.forEach((input) => {
+        input.removeAttribute('disabled');
+      });
+      editBtn.style.display = 'none';
+      saveBtn.style.display = 'inline-block';
+    }
+
+    // Save the updated form data
+    function saveForm(event) {
+      event.preventDefault(); // Prevent form submission
+      clearErrors(); // Clear any previous errormessages
+
+      if (validateForm()) {
+        formElements.forEach((input) => {
+          input.setAttribute('disabled', 'disabled');
+        });
+        editBtn.style.display = 'inline-block';
+        saveBtn.style.display = 'none';
+      }
+    }
+
+    // Clear error messages
+    function clearErrors() {
+      nameError.textContent = '';
+      emailError.textContent = '';
+      addressError.textContent = '';
+    }
+
+    // Validate the form data
+    function validateForm() {
+      let isValid = true;
+
+      if (nameInput.value.trim() === '') {
+        nameError.textContent = 'Name is required';
+        isValid = false;
+      }
+
+      if (emailInput.value.trim() === '') {
+        emailError.textContent = 'Email is required';
+        isValid = false;
+      } else if (!isValidEmail(emailInput.value.trim())) {
+        emailError.textContent = 'Invalid email format';
+        isValid = false;
+      }
+
+      if (addressInput.value.trim() === '') {
+        addressError.textContent = 'Address is required';
+        isValid = false;
+      }
+
+      return isValid;
+    }
+
+    // Email validation regex pattern
+    function isValidEmail(email) {
+      const emailRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
+      return emailRegex.test(email);
+    }
+
+    // Event listeners
+    editBtn.addEventListener('click', enableEditing);
+    saveBtn.addEventListener('click', saveForm);
+  </script>
+</body>
+</html>
