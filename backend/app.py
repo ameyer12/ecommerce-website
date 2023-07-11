@@ -14,6 +14,9 @@ CREATE_USERS_TABLE = (
 CREATE_PRODUCTS_TABLE = (
     "CREATE TABLE IF NOT EXISTS products (product_id SERIAL PRIMARY KEY, name VARCHAR(255), image VARCHAR(255), description VARCHAR(255), price DECIMAL, quantity INT)"
 )
+# RESET_PRIMARY_KEY = (
+#     "ALTER SEQUENCE products_product_id_seq RESTART WITH 1"
+# )
 CREATE_ORDERS_TABLE = (
     "CREATE TABLE IF NOT EXISTS orders (order_id SERIAL PRIMARY KEY, user_id INT, order_date DATE, status VARCHAR(255))"
 )
@@ -37,7 +40,7 @@ DELETE_USER = (
 
 # SQL scripts for products table
 INSERT_INTO_PRODUCTS = (
-    "INSERT INTO products (name, description, price, quantity) VALUES (%s, %s, %s, %s) RETURNING product_id"
+    "INSERT INTO products (name, image, description, price, quantity) VALUES (%s, %s, %s, %s, %s) RETURNING product_id"
 )
 GET_ALL_PRODUCTS = (
     "SELECT * FROM products"
@@ -55,7 +58,7 @@ app = Flask(__name__)
 url = os.getenv("DATABASE_URL")
 connection = psycopg2.connect(url)
 bcrypt = Bcrypt(app)
-CORS(app, supports_credentials=True)
+CORS(app, supports_credentials=True, origins='http://localhost:3000')
 
 # Key for signing the token
 app.config['SECRET_KEY'] = 'secretkey'
@@ -113,7 +116,7 @@ def loginUser():
 
     token = jwt.encode({'user': user[0], 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=120)}, app.config['SECRET_KEY'])
 
-    return jsonify({"user_id": user[0], "token": token, "message": "User successfully logged in."}), 201
+    return jsonify({"user_id": user[0], "isAdmin": user[4], "token": token, "message": "User successfully logged in."}), 201
 
 @app.delete("/api/users/delete")
 def deleteUser():
@@ -137,6 +140,10 @@ def deleteUser():
 
     return jsonify({"message": "User successfully deleted."}), 201
 
+
+
+
+
 @app.route("/api/users", methods=["GET"])
 def getAllUsers():
     with connection:
@@ -151,6 +158,7 @@ def getAllUsers():
 def addProduct():
     data = request.get_json()
     name = data["name"]
+    image = data["image"]
     description = data["description"]
     price = data["price"]
     quantity = data["quantity"]
@@ -158,7 +166,7 @@ def addProduct():
     with connection:
         with connection.cursor() as cursor:
             cursor.execute(CREATE_PRODUCTS_TABLE)
-            cursor.execute(INSERT_INTO_PRODUCTS, (name, description, price, quantity))
+            cursor.execute(INSERT_INTO_PRODUCTS, (name, image, description, price, quantity))
             product_id = cursor.fetchone()[0]
 
     return jsonify({"product_id": product_id, "message": "Product successfully created"}), 201
@@ -185,6 +193,24 @@ def deleteProduct():
             cursor.execute(DELETE_PRODUCT, (product_id,))
 
     return jsonify({"message": "Product successfully deleted."}), 201
+
+@app.patch("/api/products/update")
+def updateProduct():
+    data = request.get_json()
+    product_id = data["product_id"]
+    name = data["name"]
+    image = data["image"]
+    description = data["description"]
+    price = data["price"]
+    quantity = data["quantity"]
+    updateProductQuery = "UPDATE products SET name = %s, image = %s, description = %s, price = %s, quantity = %s WHERE product_id = %s"
+
+    with connection:
+        with connection.cursor() as cursor:
+            cursor.execute(CREATE_PRODUCTS_TABLE)
+            cursor.execute(updateProductQuery, (name, image, description, price, quantity, product_id))
+
+    return jsonify({"message": "Product successfully updated."}), 200
 
 @app.route("/api/products", methods=['GET'])
 def getAllProducts():

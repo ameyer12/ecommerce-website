@@ -52,3 +52,18 @@ body {
   .registration-link {
     margin-top: 3%;
   }
+
+  #account-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #sign-out-button, #admin-button {
+    margin-top: 1%;
+  }
+
+  #account-card {
+    width: 45%;
+  }

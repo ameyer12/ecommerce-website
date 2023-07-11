@@ -6,6 +6,8 @@ import './login.css';
 function Login({navigate}) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [isAdmin, setIsAdmin] = useState(false);
+
 
     const handleLogin = async (ev) => {
         ev.preventDefault();
@@ -15,8 +17,10 @@ function Login({navigate}) {
                 password: password,
             })
             const results = response.data;
+            console.log(results)
 
             window.localStorage.setItem('token', results.token);
+            window.localStorage.setItem('admin', results.isAdmin);
 
             if(results.message === "User successfully logged in."){
                 swal({
@@ -36,9 +40,21 @@ function Login({navigate}) {
               });
         }
     }
-    const token = window.localStorage.token;
 
-    if(token === undefined){
+    const token = window.localStorage.token;
+    const admin = window.localStorage.isAdmin
+    
+    const handleLogout = async () => {
+        try {
+            localStorage.removeItem('token');
+            localStorage.removeItem('admin');
+            navigate("/")
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    if(token == undefined){
         return (
         <div className="container">
             <h1>Login</h1>
@@ -68,6 +84,7 @@ function Login({navigate}) {
                 onChange={(ev) => {
                     ev.preventDefault();
                     setPassword(ev.target.value)
+                    setIsAdmin(true)
                 }}
                 />
             </div>
@@ -78,7 +95,36 @@ function Login({navigate}) {
             </form>
         </div>
         );
-    } else {
+    } else if (token !== undefined && admin !== false) {
+        return (
+            <div id="account-page">
+            <h1 id="account-page-p">My Account</h1>
+            <div className="card" id='account-card'>
+                <div className="card-body">
+                    <p className="card-text">Order History</p>
+                    <p className="card-text">Manage Addresses</p>
+                    <p className="card-text">Account Details</p>
+                </div>
+            </div>
+            <button
+            type="submit"
+            id="admin-button" 
+            className="btn btn-primary"
+            onClick={() => {
+                navigate("/admin")
+            }}
+            >Admin Page</button>
+            <button
+            type="submit"
+            id="sign-out-button" 
+            className="btn btn-primary"
+            onClick={() => {
+                handleLogout()
+            }}
+            >Sign Out</button>
+        </div>
+        );
+    } else if (token !== undefined && admin === false){
         return (
             <div id="account-page">
             <p id="account-page-p">My Account</p>
@@ -94,7 +140,7 @@ function Login({navigate}) {
             id="sign-out-button" 
             className="btn btn-primary"
             onClick={() => {
-                console.log("Hello, world")
+                handleLogout()
             }}
             >Sign Out</button>
         </div>
