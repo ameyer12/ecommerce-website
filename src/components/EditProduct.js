@@ -42,7 +42,7 @@ function EditProduct({navigate}) {
 
     return (
         <div class="container">
-            <h1>Edit aProduct</h1>
+            <h1>Edit a Product</h1>
             <form
                 onSubmit={
                     handleEditProduct

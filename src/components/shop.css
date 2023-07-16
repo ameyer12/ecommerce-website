@@ -1,0 +1,77 @@
+.shop {
+    position: absolute;
+    height: 93%;
+    width: 100%;
+    background-color: #dadada;
+    overflow: scroll;
+}
+
+.shop-page-h1 {
+    font-size: 20pt;
+    margin-top: 1%;
+    padding-bottom: 1%;
+    padding-left: 1.5%;
+    border-bottom: 1px solid gray;
+}
+
+.product-image {
+    width: 16rem;
+    height: 15rem;
+    margin-right: 18%;
+}
+
+.spacing-div {
+    padding: 5%;
+}
+
+.products-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin-left: 2%;
+    margin-top: 1.5%;
+    margin-right: 2%;
+}
+
+.card {
+    background-color: #dadada;
+    border: none;
+    margin-top: 1rem;
+}
+
+.product-title {
+    font-size: 10pt;
+    margin-top: 7%;
+}
+
+.add-product {
+    text-decoration: none;
+    color: grey;
+    border: 1pt solid black;
+    justify-self: center;
+}
+
+.product-link:hover {
+    color: #BC4639;
+}
+
+.qtyButtons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#qtyBtn:hover {
+    background-color: rgb(187, 187, 187);
+}
+
+.delete-button {
+    text-decoration: none;
+    color: grey;
+    margin-left: 5%;
+}
+
+.delete-button:hover {
+    color: #BC4639;
+    cursor: pointer;
+}

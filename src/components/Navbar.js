@@ -20,7 +20,7 @@ function Navbar() {
                     <a className="nav-link" href="/login"><i className="material-icons">person</i></a>
                 </li>
                 <li className="nav-item">
-                    <button className="nav-link" href="#"><i className="material-icons">shopping_cart</i></button>
+                    <a className="nav-link" href="/cart"><i className="material-icons">shopping_cart</i></a>
                 </li>
                 </ul>
             </div>

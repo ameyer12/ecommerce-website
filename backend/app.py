@@ -14,14 +14,11 @@ CREATE_USERS_TABLE = (
 CREATE_PRODUCTS_TABLE = (
     "CREATE TABLE IF NOT EXISTS products (product_id SERIAL PRIMARY KEY, name VARCHAR(255), image VARCHAR(255), description VARCHAR(255), price DECIMAL, quantity INT)"
 )
-# RESET_PRIMARY_KEY = (
-#     "ALTER SEQUENCE products_product_id_seq RESTART WITH 1"
-# )
 CREATE_ORDERS_TABLE = (
     "CREATE TABLE IF NOT EXISTS orders (order_id SERIAL PRIMARY KEY, user_id INT, order_date DATE, status VARCHAR(255))"
 )
 CREATE_CARTS_TABLE = (
-    "CREATE TABLE IF NOT EXISTS carts (order_item_id SERIAL PRIMARY KEY, order_id INT, product_id INT, quantity INT, subtotal DECIMAL)"
+    "CREATE TABLE IF NOT EXISTS carts (order_item_id SERIAL PRIMARY KEY, order_id INT, user_id INT, product_id INT, quantity INT, subtotal DECIMAL)"
 )
 
 # SQL scripts for users table
@@ -220,6 +217,60 @@ def getAllProducts():
             cursor.execute(GET_ALL_PRODUCTS)
             products = cursor.fetchall()
     return jsonify(products)
+
+@app.post("/api/cart/add")
+def addToCart():
+    data = request.get_json()
+    user_id = data["user_id"]
+    product_id = data["product_id"]
+    quantity = data["quantity"]
+
+    # Get the product details
+    with connection:
+        with connection.cursor() as cursor:
+            cursor.execute(GET_PRODUCT_BY_ID, (product_id,))
+            product = cursor.fetchone()
+
+    # Check if the product exists
+    if product is None:
+        return jsonify({"message": "Product does not exist. Please input a valid product id."}), 400
+
+    # Calculate the subtotal
+    subtotal = product[4] * quantity
+
+    # Insert the item into the cart
+    with connection:
+        with connection.cursor() as cursor:
+            cursor.execute(CREATE_CARTS_TABLE)
+            cursor.execute(
+                "INSERT INTO carts (user_id, product_id, quantity, subtotal) VALUES (%s, %s, %s, %s)",
+                (user_id, product_id, quantity, subtotal),
+            )
+
+    return jsonify({"message": "Item successfully added to the cart."}), 201
+
+@app.get("/api/cart/{user_id}")
+def getCart(user_id):
+    with connection:
+        with connection.cursor() as cursor:
+            cursor.execute(
+                "SELECT c.order_item_id, p.name, p.price, c.quantity, c.subtotal FROM carts c JOIN products p ON c.product_id = p.product_id WHERE c.user_id = %s",
+                (user_id,),
+            )
+            cart_items = cursor.fetchall()
+
+    return jsonify(cart_items)
+
+@app.delete("/api/cart/{order_item_id}")
+def removeFromCart(order_item_id):
+    with connection:
+        with connection.cursor() as cursor:
+            cursor.execute(
+                "DELETE FROM carts WHERE order_item_id = %s",
+                (order_item_id,),
+            )
+
+    return jsonify({"message": "Item successfully removed from the cart."}), 200
 
 if __name__ == "__main__":
     app.run(debug=True, port=5001)
