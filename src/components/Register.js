@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import swal from 'sweetalert';
+import Swal from 'sweetalert2';
 import axios from 'axios'
 import './register.css';
 
@@ -19,23 +19,23 @@ function Register({navigate, registerUser}) {
                 isAdmin: isAdmin
             })
             const results = response.data;
-            console.log(results)
-
-            window.localStorage.setItem('token', results.token)
+            window.localStorage.setItem('token', results.token);
+            window.localStorage.setItem('admin', results.isAdmin);
 
             if(results.message === "User successfully created"){
-                swal({
+                Swal.fire({
                     icon: "success",
+                    text: results.message,
                 })
                 navigate("/")
             } else if(results.message === "Registration failed. Email already exists."){
-                swal({
+                Swal.fire({
                     title: "Registration failed.",
                     text: "An account with this email already exists."
                 });
             }
         } catch(error) {
-            swal({
+            Swal.fire({
                 title: "Registration failed.",
                 text: "An account with this email already exists."
               });

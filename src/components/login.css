@@ -62,8 +62,11 @@ body {
 
   #sign-out-button, #admin-button {
     margin-top: 1%;
+    background-color: transparent !important;
+    border: 1pt solid white;
   }
 
   #account-card {
     width: 45%;
   }
+

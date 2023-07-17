@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import swal from 'sweetalert';
+import Swal from 'sweetalert2';
 import axios from 'axios';
 
 function AddProduct({navigate}) {
@@ -20,16 +20,16 @@ function AddProduct({navigate}) {
                 quantity: quantity
             })
             const results = response.data;
-            console.log(results)
 
             if(results.message === "Product successfully created"){
-                swal({
+                Swal.fire({
                     icon: "success",
+                    text: results.message,
                 })
                 navigate("/")
             } 
         } catch(error) {
-            swal({
+            Swal.fire({
                 title: "Product creation failed.",
                 text: "Please try again."
               });

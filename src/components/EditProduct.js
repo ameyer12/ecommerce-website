@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import swal from 'sweetalert';
+import Swal from 'sweetalert2';
 import axios from 'axios';
 import './editproduct.css';
 
@@ -24,16 +24,16 @@ function EditProduct({navigate}) {
                 quantity: quantity || undefined
             })
             const results = response.data;
-            console.log(results)
 
             if(results.message === "Product successfully updated"){
-                swal({
+                Swal.fire({
                     icon: "success",
+                    text: results.message,
                 })
                 navigate("/")
             } 
         } catch(error) {
-            swal({
+            Swal.fire({
                 title: "Product update failed.",
                 text: "Please try again."
               });

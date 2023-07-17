@@ -137,10 +137,6 @@ def deleteUser():
 
     return jsonify({"message": "User successfully deleted."}), 201
 
-
-
-
-
 @app.route("/api/users", methods=["GET"])
 def getAllUsers():
     with connection:
@@ -221,8 +217,8 @@ def getAllProducts():
 @app.post("/api/cart/add")
 def addToCart():
     data = request.get_json()
-    user_id = data["user_id"]
-    product_id = data["product_id"]
+    user_id = data["userId"]
+    product_id = data["productId"]
     quantity = data["quantity"]
 
     # Get the product details
@@ -249,7 +245,7 @@ def addToCart():
 
     return jsonify({"message": "Item successfully added to the cart."}), 201
 
-@app.get("/api/cart/{user_id}")
+@app.route("/api/cart/<int:user_id>")
 def getCart(user_id):
     with connection:
         with connection.cursor() as cursor:
@@ -261,7 +257,7 @@ def getCart(user_id):
 
     return jsonify(cart_items)
 
-@app.delete("/api/cart/{order_item_id}")
+@app.delete("/api/cart/<int:order_item_id>")
 def removeFromCart(order_item_id):
     with connection:
         with connection.cursor() as cursor:

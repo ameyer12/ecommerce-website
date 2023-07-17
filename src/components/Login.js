@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
-import swal from 'sweetalert';
+import Swal from 'sweetalert2';
 import './login.css';
 
 function Login({navigate}) {
@@ -21,20 +21,22 @@ function Login({navigate}) {
 
             window.localStorage.setItem('token', results.token);
             window.localStorage.setItem('admin', results.isAdmin);
+            window.localStorage.setItem('userId', results.user_id);
 
             if(results.message === "User successfully logged in."){
-                swal({
+                Swal.fire({
                     icon: "success",
+                    text: results.message,
                 })
                 navigate("/")
             } else if(results.message === "Login failed. Unauthorized access."){
-                swal({
+                Swal.fire({
                     title: "Login failed.",
                     text: "Invalid credentials."
                 });
             }
         } catch(error) {
-            swal({
+            Swal.fire({
                 title: "Login failed.",
                 text: "Invalid credentials."
               });
@@ -42,8 +44,9 @@ function Login({navigate}) {
     }
 
     const token = window.localStorage.token;
-    const admin = window.localStorage.isAdmin
-    
+    const admin = window.localStorage.isAdmin;
+    const userId = window.localStorage.user_id;
+
     const handleLogout = async () => {
         try {
             localStorage.removeItem('token');
@@ -54,7 +57,7 @@ function Login({navigate}) {
         }
     }
 
-    if(token == undefined){
+    if(token === undefined){
         return (
         <div className="container">
             <h1>Login</h1>
@@ -90,7 +93,7 @@ function Login({navigate}) {
             </div>
             <div className="form-group">
                 <button type="submit">Login</button>
-                <p className="registration-link">Don't have an account?<a href="/register">Register</a></p>
+                <p className="registration-link">Don't have an account? <a href="/register">Register</a></p>
             </div>
             </form>
         </div>

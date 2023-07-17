@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import swal from 'sweetalert';
+import Swal from 'sweetalert2';
 import axios from 'axios';
 import './deleteproduct.css';
 
@@ -22,13 +22,14 @@ function DeleteProduct({navigate}) {
             console.log(results)
 
             if(results.message === "Product successfully deleted."){
-                swal({
+                Swal.fire({
                     icon: "success",
+                    text: results.message,
                 })
                 navigate("/")
             }
         } catch(error) {
-            swal({
+            Swal.fire({
                 title: "Product deletion failed.",
                 text: "Please make sure the product id is correct, and try again."
               });

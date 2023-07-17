@@ -12,7 +12,7 @@ function App() {
     <div>
       <Navbar />
       <Routes>
-        <Route path='/' element={ <Home /> }></Route>
+        <Route path='/' element={ <Home navigate={navigate}/> }></Route>
         <Route path='/login' element={ <Login navigate={navigate} setToken={setToken} /> }></Route>
         <Route path='/register' element={ <Register navigate={navigate} setToken={setToken} /> }></Route>
         <Route path='/products' element={ <Shop navigate={navigate} /> }></Route>

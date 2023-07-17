@@ -1,0 +1,46 @@
+.cart-h1, .subtotal {
+    color: white;
+}
+
+.cart-product-button-container {
+    display: flex;
+}
+
+.quantity-container {
+    border: 1pt solid black;
+    margin: 1%;
+    padding-top: 0.5%;
+    padding-bottom: 0.5%;
+    padding-left: 1%;
+    padding-right: 1%;
+    border-radius: 10%;
+}
+
+.check-out-button {
+    background-color: #0d6efd;
+    color: white;
+    width: 96%;
+    margin: 2%;
+}
+
+.product-id, .product-price {
+    margin-left: 2%;
+}
+
+.remove-item-button {
+    border: 1pt solid black;
+    width: 96%;
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-bottom: 1%;
+}
+
+.subtotal {
+    text-align: center;
+    font-size: larger;
+}
+
+.cart-card {
+    margin-left: 2%;
+    margin-right: 2%;
+}

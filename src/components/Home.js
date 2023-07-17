@@ -1,9 +1,15 @@
 import './home.css';
 
-function Home() {
+function Home({navigate}) {
   return (
-    <div>
-        <h1>Welcome to the ecommerce store!</h1>
+    <div className='home-card'>
+        <h1>Welcome to the e-commerce store!</h1>
+        <button 
+        className='btn home-button'
+        onClick={() => {
+          navigate('/products')
+        }}
+        >Shop Now</button>
     </div>
   );
 }

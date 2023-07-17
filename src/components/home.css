@@ -1,0 +1,11 @@
+.home-card {
+    margin-top: 15% !important;
+    color: white;
+    text-align: center;
+}
+
+.home-button {
+    border: 1pt solid white;
+    color: white;
+    margin-top: 5%;
+}
