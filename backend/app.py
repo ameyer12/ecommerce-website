@@ -18,7 +18,7 @@ CREATE_ORDERS_TABLE = (
     "CREATE TABLE IF NOT EXISTS orders (order_id SERIAL PRIMARY KEY, user_id INT, order_date DATE, status VARCHAR(255))"
 )
 CREATE_CARTS_TABLE = (
-    "CREATE TABLE IF NOT EXISTS carts (order_item_id SERIAL PRIMARY KEY, order_id INT, user_id INT, product_id INT, quantity INT, subtotal DECIMAL)"
+    "CREATE TABLE IF NOT EXISTS carts (order_item_id SERIAL PRIMARY KEY, order_id INT, user_id INT, product_id INT, quantity INT, subtotal INT)"
 )
 
 # SQL scripts for users table
