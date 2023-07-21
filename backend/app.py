@@ -6,6 +6,7 @@ from flask_cors import CORS, cross_origin
 from flask_bcrypt import Bcrypt
 import jwt
 import datetime
+from werkzeug.security import safe_str_cmp 
 
 # SQL scripts for creating the database tables
 CREATE_USERS_TABLE = (
