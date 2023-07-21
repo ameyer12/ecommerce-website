@@ -44,7 +44,6 @@ function Login({navigate}) {
 
     const token = window.localStorage.token;
     const admin = window.localStorage.isAdmin;
-    setIsAdmin(admin)
     const userId = window.localStorage.user_id;
 
     const handleLogout = async () => {
@@ -98,7 +97,7 @@ function Login({navigate}) {
             </form>
         </div>
         );
-    } else if (token !== undefined && isAdmin === true) {
+    } else if (token !== undefined && admin === true) {
         return (
             <div id="account-page">
             <h1 id="account-page-p">My Account</h1>
@@ -127,7 +126,7 @@ function Login({navigate}) {
             >Sign Out</button>
         </div>
         );
-    } else if (token !== undefined && isAdmin === false){
+    } else if (token !== undefined && admin === false){
         return (
             <div id="account-page">
             <h1 id="account-page-p">My Account</h1>
@@ -149,6 +148,7 @@ function Login({navigate}) {
         </div>
         );
     } else {
+        console.log(admin)
         return (
             <div id="account-page">
             <h1 id="account-page-p">My Account</h1>
