@@ -97,7 +97,7 @@ function Login({navigate}) {
             </form>
         </div>
         );
-    } else if (token !== undefined && admin == true) {
+    } else if (token !== undefined && admin === true) {
         return (
             <div id="account-page">
             <h1 id="account-page-p">My Account</h1>
@@ -126,7 +126,7 @@ function Login({navigate}) {
             >Sign Out</button>
         </div>
         );
-    } else if (token !== undefined && admin === undefined){
+    } else if (token !== undefined && admin === false){
         console.log("hi")
         return (
             <div id="account-page">
