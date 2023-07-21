@@ -17,7 +17,6 @@ function Login({navigate}) {
                 password: password,
             })
             const results = response.data;
-            console.log(results)
 
             window.localStorage.setItem('token', results.token);
             window.localStorage.setItem('admin', results.isAdmin);
