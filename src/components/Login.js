@@ -150,6 +150,7 @@ function Login({navigate}) {
         </div>
         );
     } else {
+        console.log(admin)
         return (
             <div id="account-page">
             <h1 id="account-page-p">My Account</h1>
