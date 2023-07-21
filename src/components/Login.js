@@ -44,6 +44,7 @@ function Login({navigate}) {
 
     const token = window.localStorage.token;
     const admin = window.localStorage.isAdmin;
+    setIsAdmin(admin)
     const userId = window.localStorage.user_id;
 
     const handleLogout = async () => {
@@ -97,7 +98,7 @@ function Login({navigate}) {
             </form>
         </div>
         );
-    } else if (token !== undefined && admin === true) {
+    } else if (token !== undefined && isAdmin === true) {
         return (
             <div id="account-page">
             <h1 id="account-page-p">My Account</h1>
@@ -126,8 +127,7 @@ function Login({navigate}) {
             >Sign Out</button>
         </div>
         );
-    } else if (token !== undefined && admin === false){
-        console.log("hi")
+    } else if (token !== undefined && isAdmin === false){
         return (
             <div id="account-page">
             <h1 id="account-page-p">My Account</h1>
@@ -148,7 +148,28 @@ function Login({navigate}) {
             >Sign Out</button>
         </div>
         );
-    } 
+    } else {
+        return (
+            <div id="account-page">
+            <h1 id="account-page-p">My Account</h1>
+            <div className="card" id='account-card'>
+                <div className="card-body">
+                    <p className="card-text">Order History</p>
+                    <p className="card-text">Manage Addresses</p>
+                    <p className="card-text">Account Details</p>
+                </div>
+            </div>
+            <button
+            type="submit"
+            id="sign-out-button" 
+            className="btn btn-primary"
+            onClick={() => {
+                handleLogout()
+            }}
+            >Sign Out</button>
+        </div>
+        );
+    }
 }
 
 export default Login;
