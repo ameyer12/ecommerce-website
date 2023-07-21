@@ -97,7 +97,7 @@ function Login({navigate}) {
             </form>
         </div>
         );
-    } else if (token !== undefined && admin !== undefined) {
+    } else if (token !== undefined && admin !== false) {
         return (
             <div id="account-page">
             <h1 id="account-page-p">My Account</h1>
