@@ -56,7 +56,7 @@ app = Flask(__name__)
 url = os.getenv("DATABASE_URL")
 connection = psycopg2.connect(url)
 bcrypt = Bcrypt(app)
-CORS(app, supports_credentials=True, origins='http://localhost:3000')
+CORS(app, supports_credentials=True, origins='https://master--glittery-horse-d6a181.netlify.app')
 
 # Key for signing the token
 app.config['SECRET_KEY'] = 'secretkey'
