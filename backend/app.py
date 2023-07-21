@@ -12,7 +12,7 @@ CREATE_USERS_TABLE = (
     "CREATE TABLE IF NOT EXISTS users (user_id SERIAL PRIMARY KEY, username VARCHAR(255), email VARCHAR(255), password VARCHAR(255), isAdmin BOOLEAN DEFAULT FALSE)"
 )
 CREATE_PRODUCTS_TABLE = (
-    "CREATE TABLE IF NOT EXISTS products (product_id SERIAL PRIMARY KEY, name VARCHAR(255), image VARCHAR(255), description VARCHAR(255), price DECIMAL, quantity INT)"
+    "CREATE TABLE IF NOT EXISTS products (product_id SERIAL PRIMARY KEY, name VARCHAR(255), image VARCHAR(255), description VARCHAR(255), price DEC, quantity INT)"
 )
 CREATE_ORDERS_TABLE = (
     "CREATE TABLE IF NOT EXISTS orders (order_id SERIAL PRIMARY KEY, user_id INT, order_date DATE, status VARCHAR(255))"
@@ -212,6 +212,15 @@ def getAllProducts():
             cursor.execute(CREATE_PRODUCTS_TABLE)
             cursor.execute(GET_ALL_PRODUCTS)
             products = cursor.fetchall()
+
+    def decimal_to_string(product):
+        product_dict = dict(product)
+        product_dict['price'] = str(product['price'])
+        product_dict['quantity'] = str(product['quantity'])
+        return product_dict
+
+    products = [decimal_to_string(product) for product in products]
+
     return jsonify(products)
 
 @app.post("/api/cart/add")

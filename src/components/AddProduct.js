@@ -12,7 +12,7 @@ function AddProduct({navigate}) {
     const handleAddProduct = async (ev) => {
         ev.preventDefault();
         try {
-            const response = await axios.post('http://localhost:5001/api/products', {
+            const response = await axios.post('https://ecommerce-website-60o8.onrender.com/api/products', {
                 name: name,
                 image: image,
                 description: description,

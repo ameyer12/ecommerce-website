@@ -12,7 +12,7 @@ function Register({navigate, registerUser}) {
     const handleRegister = async (ev) => {
         ev.preventDefault();
         try {
-            const response = await axios.post('http://localhost:5001/api/users/register', {
+            const response = await axios.post('https://ecommerce-website-60o8.onrender.com/api/users/register', {
                 username: username,
                 email: email,
                 password: password,

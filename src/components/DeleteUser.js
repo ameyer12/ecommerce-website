@@ -9,7 +9,7 @@ function DeleteUser({navigate}) {
     const handleDeleteUser = async (ev) => {
         ev.preventDefault();
         try {
-            const response = await axios.delete('http://localhost:5001/api/users/delete', {
+            const response = await axios.delete('https://ecommerce-website-60o8.onrender.com/api/users/delete', {
                 headers: {
                   'Content-Type': 'application/json',
                 },

@@ -9,7 +9,7 @@ function DeleteProduct({navigate}) {
     const handleDeleteProduct = async (ev) => {
         ev.preventDefault();
         try {
-            const response = await axios.delete('http://localhost:5001/api/products/delete', {
+            const response = await axios.delete('https://ecommerce-website-60o8.onrender.com/api/products/delete', {
                 headers: {
                   'Content-Type': 'application/json',
                 },

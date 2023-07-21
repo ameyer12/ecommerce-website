@@ -15,7 +15,7 @@ function EditProduct({navigate}) {
     const handleEditProduct = async (ev) => {
         ev.preventDefault();
         try {
-            const response = await axios.patch('http://localhost:5001/api/products/update', {
+            const response = await axios.patch('https://ecommerce-website-60o8.onrender.com/api/products/update', {
                 product_id: productId,
                 name: name || undefined,
                 image: image || undefined,

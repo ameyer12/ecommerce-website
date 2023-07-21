@@ -12,8 +12,9 @@ function Shop() {
 
   const fetchProducts =  async () => {
     try {
-        const response = await axios.get('http://localhost:5001/api/products')
+        const response = await axios.get('https://ecommerce-website-60o8.onrender.com/api/products')
         const results = response.data;
+        console.log(results)
 
         setProducts(results)
     } catch(error) {
@@ -23,7 +24,7 @@ function Shop() {
 
   const addProductToCart = async () => {
     try {
-      const response = await axios.post('http://localhost:5001/api/cart/add', {
+      const response = await axios.post('https://ecommerce-website-60o8.onrender.com/api/cart/add', {
         userId: userId,
         productId: productId,
         quantity: quantity

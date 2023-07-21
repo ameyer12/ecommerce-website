@@ -13,7 +13,7 @@ function Cart() {
 
     const fetchCart = async () => {
         try {
-            const response = await axios.get(`/api/cart/${userId}`)
+            const response = await axios.get(`https://ecommerce-website-60o8.onrender.com/api/cart/${userId}`)
             const results = response.data;
     
             setCart(results);

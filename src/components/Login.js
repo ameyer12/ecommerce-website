@@ -12,7 +12,7 @@ function Login({navigate}) {
     const handleLogin = async (ev) => {
         ev.preventDefault();
         try {
-            const response = await axios.post('http://localhost:5001/api/users/login', {
+            const response = await axios.post('https://ecommerce-website-60o8.onrender.com/api/users/login', {
                 email: email,
                 password: password,
             })
