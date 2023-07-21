@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 from flask import Flask, jsonify, request
 from flask_cors import CORS, cross_origin
 from flask_bcrypt import Bcrypt
+import decimal
 import jwt
 import datetime
 
@@ -12,13 +13,13 @@ CREATE_USERS_TABLE = (
     "CREATE TABLE IF NOT EXISTS users (user_id SERIAL PRIMARY KEY, username VARCHAR(255), email VARCHAR(255), password VARCHAR(255), isAdmin BOOLEAN DEFAULT FALSE)"
 )
 CREATE_PRODUCTS_TABLE = (
-    "CREATE TABLE IF NOT EXISTS products (product_id SERIAL PRIMARY KEY, name VARCHAR(255), image VARCHAR(255), description VARCHAR(255), price INT, quantity INT)"
+    "CREATE TABLE IF NOT EXISTS products (product_id SERIAL PRIMARY KEY, name VARCHAR(255), image VARCHAR(255), description VARCHAR(255), price DEC, quantity INT)"
 )
 CREATE_ORDERS_TABLE = (
     "CREATE TABLE IF NOT EXISTS orders (order_id SERIAL PRIMARY KEY, user_id INT, order_date DATE, status VARCHAR(255))"
 )
 CREATE_CARTS_TABLE = (
-    "CREATE TABLE IF NOT EXISTS carts (order_item_id SERIAL PRIMARY KEY, order_id INT, user_id INT, product_id INT, quantity INT, subtotal INT)"
+    "CREATE TABLE IF NOT EXISTS carts (order_item_id SERIAL PRIMARY KEY, order_id INT, user_id INT, product_id INT, quantity INT, subtotal DECIMAL)"
 )
 
 # SQL scripts for users table
