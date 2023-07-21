@@ -129,7 +129,7 @@ function Login({navigate}) {
     } else if (token !== undefined && admin === undefined){
         return (
             <div id="account-page">
-            <p id="account-page-p">My Account</p>
+            <h1 id="account-page-p">My Account</h1>
             <div className="card" id='account-card'>
                 <div className="card-body">
                     <p className="card-text">Order History</p>
@@ -147,28 +147,7 @@ function Login({navigate}) {
             >Sign Out</button>
         </div>
         );
-    } else {
-        return (
-            <div id="account-page">
-            <p id="account-page-p">My Account</p>
-            <div className="card" id='account-card'>
-                <div className="card-body">
-                    <p className="card-text">Order History</p>
-                    <p className="card-text">Manage Addresses</p>
-                    <p className="card-text">Account Details</p>
-                </div>
-            </div>
-            <button
-            type="submit"
-            id="sign-out-button" 
-            className="btn btn-primary"
-            onClick={() => {
-                handleLogout()
-            }}
-            >Sign Out</button>
-        </div>
-        );
-    }
+    } 
 }
 
 export default Login;
