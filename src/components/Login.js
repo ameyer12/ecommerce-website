@@ -43,7 +43,7 @@ function Login({navigate}) {
     }
 
     const token = window.localStorage.token;
-    const admin = window.localStorage.isAdmin;
+    const admin = window.localStorage.admin;
     const userId = window.localStorage.user_id;
 
     const handleLogout = async () => {
@@ -150,7 +150,6 @@ function Login({navigate}) {
         </div>
         );
     } else {
-        console.log(admin)
         return (
             <div id="account-page">
             <h1 id="account-page-p">My Account</h1>
