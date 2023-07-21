@@ -192,19 +192,43 @@ def deleteProduct():
 def updateProduct():
     data = request.get_json()
     product_id = data["product_id"]
-    name = data["name"]
-    image = data["image"]
-    description = data["description"]
-    price = data["price"]
-    quantity = data["quantity"]
-    updateProductQuery = "UPDATE products SET name = %s, image = %s, description = %s, price = %s, quantity = %s WHERE product_id = %s"
+    name = data.get("name")  # Using data.get() to get optional fields
+    image = data.get("image")
+    description = data.get("description")
+    price = data.get("price")
+    quantity = data.get("quantity")
+
+    # Construct the update query dynamically based on the provided fields
+    updateProductQuery = "UPDATE products SET "
+    set_values = []
+
+    if name:
+        updateProductQuery += "name = %s, "
+        set_values.append(name)
+    if image:
+        updateProductQuery += "image = %s, "
+        set_values.append(image)
+    if description:
+        updateProductQuery += "description = %s, "
+        set_values.append(description)
+    if price:
+        updateProductQuery += "price = %s, "
+        set_values.append(price)
+    if quantity:
+        updateProductQuery += "quantity = %s, "
+        set_values.append(quantity)
+
+    # Remove the trailing comma and space from the query
+    updateProductQuery = updateProductQuery.rstrip(", ")
+    updateProductQuery += " WHERE product_id = %s"
+    set_values.append(product_id)
 
     with connection:
         with connection.cursor() as cursor:
-            cursor.execute(CREATE_PRODUCTS_TABLE)
-            cursor.execute(updateProductQuery, (name, image, description, price, quantity, product_id))
+            cursor.execute(updateProductQuery, set_values)
 
     return jsonify({"message": "Product successfully updated."}), 200
+
 
 @app.route("/api/products", methods=['GET'])
 def getAllProducts():

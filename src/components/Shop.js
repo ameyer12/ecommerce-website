@@ -14,7 +14,6 @@ function Shop() {
     try {
         const response = await axios.get('https://ecommerce-website-60o8.onrender.com/api/products')
         const results = response.data;
-        console.log(results)
 
         setProducts(results)
     } catch(error) {
@@ -52,11 +51,11 @@ function Shop() {
         <div className='products-container'> {
             products.map((currentItem, index) => { 
                 return <li className="card" key={index}>
-                            <img className="product-image" src={currentItem[5]} alt="product"/>
+                            <img className="product-image" src={currentItem[2]} alt="product"/>
                             <p className='product-title'>
                                 {currentItem[1]}
                                 <br></br>
-                                ${currentItem[3]}
+                                ${currentItem[4]}
                                 <br></br>
                                 <button
                                   className="btn add-product"

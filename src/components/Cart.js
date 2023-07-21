@@ -39,7 +39,7 @@ function Cart() {
 
     const removeProductFromCart = async (orderItemId) => {
         try {
-            const response = await axios.delete(`/api/cart/${orderItemId}`);
+            const response = await axios.delete(`https://ecommerce-website-60o8.onrender.com/api/cart/${orderItemId}`);
             const results = response.data;
             
             fetchCart();

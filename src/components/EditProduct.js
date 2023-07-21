@@ -24,8 +24,9 @@ function EditProduct({navigate}) {
                 quantity: quantity || undefined
             })
             const results = response.data;
+            console.log(results)
 
-            if(results.message === "Product successfully updated"){
+            if(results.message === "Product successfully updated."){
                 Swal.fire({
                     icon: "success",
                     text: results.message,
@@ -74,7 +75,7 @@ function EditProduct({navigate}) {
                  />
             </div>
             <div className="form-group">
-                <label for="name">Product Image URL</label>
+                <label for="name">Update Product Image URL</label>
                 <input 
                 type="text" 
                 id="name" 
@@ -86,7 +87,7 @@ function EditProduct({navigate}) {
                 />
             </div>
             <div className="form-group">
-                <label for="name">Product Description</label>
+                <label for="name">Update Product Description</label>
                 <input 
                 type="text" 
                 id="name" 
@@ -98,7 +99,7 @@ function EditProduct({navigate}) {
                 />
             </div>
             <div className="form-group">
-                <label for="name">Product Price</label>
+                <label for="name">Update Product Price</label>
                 <input 
                 type="number" 
                 id="name" 
@@ -110,7 +111,7 @@ function EditProduct({navigate}) {
                 />
             </div>
             <div className="form-group">
-                <label for="name">Product Quantity</label>
+                <label for="name">Update Product Quantity</label>
                 <input 
                 type="number" 
                 id="name" 
@@ -121,7 +122,7 @@ function EditProduct({navigate}) {
                 }}
                 />
             </div>
-            <input type="submit" value="Add Product" />
+            <input type="submit" value="Edit Product" />
             </form>
         </div>
     );
