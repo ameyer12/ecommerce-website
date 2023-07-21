@@ -98,6 +98,7 @@ function Login({navigate}) {
         </div>
         );
     } else if (token !== undefined && admin === true) {
+        console.log(admin)
         return (
             <div id="account-page">
             <h1 id="account-page-p">My Account</h1>
@@ -127,6 +128,7 @@ function Login({navigate}) {
         </div>
         );
     } else if (token !== undefined && admin === false){
+        console.log(admin)
         return (
             <div id="account-page">
             <h1 id="account-page-p">My Account</h1>
