@@ -50,6 +50,7 @@ function Login({navigate}) {
         try {
             localStorage.removeItem('token');
             localStorage.removeItem('admin');
+            localStorage.removeItem('userId');
             navigate("/")
         } catch (error) {
             throw error;
@@ -86,7 +87,6 @@ function Login({navigate}) {
                 onChange={(ev) => {
                     ev.preventDefault();
                     setPassword(ev.target.value)
-                    setIsAdmin(true)
                 }}
                 />
             </div>
