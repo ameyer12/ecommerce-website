@@ -127,6 +127,7 @@ function Login({navigate}) {
         </div>
         );
     } else if (token !== undefined && admin === undefined){
+        console.log("hi")
         return (
             <div id="account-page">
             <h1 id="account-page-p">My Account</h1>
